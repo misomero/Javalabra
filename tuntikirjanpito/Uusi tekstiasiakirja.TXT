@@ -1,4 +1,0 @@
-Tuntikirjanpito Maija Somero
-
-15.1. 15-17 GitHub lataus koneelle, käyttöönotto ja harjoittelu
-      22.30-? GitHub harjoittelua ja ensimmäisen dl:n vaatimusten mukaisten hommien tekoa.

@@ -1,0 +1,13 @@
+AIHE: Aiheeni Ohjelmoinnin harjoitustyöhön on vuoropohjainen tektuaalinen seikkaliupeli (johon liitetään kuvia ja taustamusiikkia jos ennätän). Siinä pelaaja saa tilannekuvauksia teksutaalisesti, sekä toimintavaihtoehtoja. Eri vaihtoehdot vievät erilaisiin tilanteisiin, joissa taas voi toimia eri tavoin. Pelin olisi tarkoitus kertoa Muumiankka nimisestä kuvitteellisesta hahmosta. Pelissä ei voi kuolla.
+
+KÄYTTÄJÄT: Pelaaja (tai pelaajat)
+
+PELAAJAN TOIMINNOT: 
+
+¤ uuden pelin aloittaminen
+
+¤ erilaisilla kirjallisilla komennoilla, siis syöttämällä teksitä, pelaaja voi valita toimintavaihtoehtojen välillä
+
+¤ pelin lopettaminen
+
+(¤ pelin tallentaminen ?)

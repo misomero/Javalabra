@@ -10,28 +10,30 @@ package muumiankka;
  */
 public class Ohjaus {
     
+    public Muisti muisti;
+    public Kohta kohta;
+    public int missa;
+    public int uusik;
     public String pelaaja;
-    public char valintakohta;
-    private Tilat eka = new Tilat();
-    private Muisti toka = new Muisti();
     
     public Ohjaus () {
-        this.eka=eka;
-        this.toka=toka;
-        this.pelaaja=pelaaja;
-    }
-    
-    public void siirry () {
-        eka.etsiTila(valintakohta);
-    }
-    
-    public void tallenna() {
-        toka.tallennaMuistiin(pelaaja,valintakohta);
-    }
-    public String annaNimi() {
-        return pelaaja;
-    }
-    public void haeKohta() {
+       
+        this.muisti=new Muisti();
+        this.missa=0;
+        this.kohta= new Kohta(missa);
         
+    }
+    
+     
+    public void siirtyminen() {
+        missa+=uusik;
+    }
+    
+   
+    public void tallenna() {
+        muisti.tallennaMuistiin(pelaaja,missa);
+    }
+    public void asetaNimi(String nimi) {
+        muisti.pelaaja=nimi;
     }
 }

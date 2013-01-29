@@ -2,3 +2,8 @@ Tuntikirjanpito Maija Somero
 
 15.1. 15-17 GitHub lataus koneelle, käyttöönotto ja harjoittelu
       22.30-? GitHub harjoittelua ja ensimmäisen dl:n vaatimusten mukaisten hommien tekoa.
+24.1. 14-17 ohjelmointia
+      18-20.20 ohjelmointia/testausta
+26.1. 10-16 ohjelmointia/testausta
+29.1. 13-17 Ohjelmointia(ohjelmaa rankasti uusiksi)
+

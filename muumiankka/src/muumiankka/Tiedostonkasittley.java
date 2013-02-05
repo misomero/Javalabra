@@ -14,12 +14,14 @@ import java.io.*;
 
 public class Tiedostonkasittley {
     
-    public ArrayList<String> tekstit = new ArrayList();
-    public ArrayList<String> nimet = new ArrayList();
+    public ArrayList<String> tekstit;
+    public ArrayList<String> nimet;
     
     
     public Tiedostonkasittley() {
         this.tekstit=tekstit;
+        this.tekstit=new ArrayList();
+        this.nimet=new ArrayList();
     }
     
     public void tekstienLuku() {
@@ -61,9 +63,18 @@ public class Tiedostonkasittley {
                 tilanne = lukija.nextLine();
             }
         } catch (Exception e) {
-            System.out.println("Nimelläsi ei ole vielä tallennettu mitään tai tiedoston luvussa oli virhe!");
+            System.out.println("Tiedoston luvussa oli virhe!");
         }
         int kohta=0;
+        int kerroin=1;
+        if(tilanne.length()>1) {
+            for(int i=tilanne.length(); i>=0; i++) {
+                kohta+=kohta+((int)tilanne.charAt(i)-48)*kerroin;
+                kerroin=kerroin*10;   
+            }
+        } else {
+            kohta=(int)tilanne.charAt(0)-48;
+        }
         return kohta;
     }
     public void lueNimet() {

@@ -70,7 +70,7 @@ public class TiedostojenLukuTest {
     public void tekstinLukuJaTalletusoikein3() {
         eka.tekstienLuku();
         teksti = eka.tekstit.get(0);
-        assertEquals("\nALKU:\nSateisena ja koleana marraskuun\niltana saapui Rautatieasemalle\njuna. Siita nousi pieni ja pyyleva\nhahmo: Muumiankka.\nSilla oli kadessaan pilkullinen\nsateenvarjo. Pilkullinen koska\nse piti pilkullisita asioista.\nNuoruusvuosinaan se oli toivonut\nolevansa Leopardi. Voimakas ja\nnopea, seka ehdottomasti vaarallinen.\nMutta siita tulikin vain\ntavallinen ancusmuumicus.",teksti);
+        assertEquals("\nALKU:\nSateisena ja koleana marraskuun\niltana saapui Rautatieasemalle\njuna. Siitä nousi pieni ja pyylevä\nhahmo: Muumiankka.\nSillä oli kadessään pilkullinen\nsateenvarjo. Pilkullinen koska\nse piti pilkullisita asioista.\nNuoruusvuosinaan se oli toivonut\nolevansa Leopardi. Voimakas ja\nnopea, seka ehdottomasti vaarallinen.\nMutta siita tulikin vain\ntavallinen ancusmuumicus.",teksti);
     }
     @Test
     public void muistinToiminta1 () {

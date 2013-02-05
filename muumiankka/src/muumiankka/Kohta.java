@@ -10,31 +10,28 @@ import java.awt.image.BufferedImage;
  *
  * @author Vierailija
  */
+import java.util.*;
 public class Kohta {
     
-    public int kohta;
-    public Kohta seuraaja1;
-    public Kohta seuraaja2;
-    public Kohta seuraaja3;
+    public ArrayList<Kohta> seuraajat = new ArrayList();
     public String tkstsisalto;
     public Tiedostonkasittley tiedos;
     public Kuvankasittely kuvak;
     public BufferedImage kuva;
     
     public Kohta(int kohta) {
-        
-        this.kohta=kohta;
-        if(kohta<=12) {
-        this.seuraaja1= new Kohta(kohta+1);
-        this.seuraaja2= new Kohta(kohta+2);
-        this.seuraaja3= new Kohta(kohta+3);
         this.kuvak=new Kuvankasittely();
-        } else {
-            this.seuraaja1=this.seuraaja2=this.seuraaja3= new Kohta(40);
-        }
-        this.tiedos=tiedos;
+        this.tiedos=new Tiedostonkasittley();
         this.tkstsisalto=tiedos.tekstit.get(kohta);
         this.kuva=kuvak.kuvat.get(kohta);
+        if(kohta<=12) {
+        this.seuraajat.add(new Kohta(kohta+1));
+        this.seuraajat.add(new Kohta(kohta+2));
+        this.seuraajat.add(new Kohta(kohta+3));
+        } else {
+            this.seuraajat.add(new Kohta(40));
+        }
+        
     }
     
 }

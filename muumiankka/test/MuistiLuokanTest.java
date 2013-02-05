@@ -70,4 +70,11 @@ public class MuistiLuokanTest {
         int kohta = eka.haeNimellaKohta("Anna");
         assertEquals(kohta,6);
     }
+    @Test
+    public void kohdanHakuJaTallennus2 () {
+        eka.tallennaMuistiin("Pekka", 38);
+        eka.tallennaMuistiin("Annika", 25);
+        int kohta = eka.haeNimellaKohta("Annika");
+        assertEquals(kohta,25);
+    }
 }

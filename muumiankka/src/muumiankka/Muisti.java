@@ -15,12 +15,11 @@ public class Muisti {
    
     public static Scanner input = new Scanner(System.in);
     
-    public Tiedostonkasittley tied = new Tiedostonkasittley();
-    public Kuvankasittely kuva = new Kuvankasittely();
+    public Tiedostonkasittley tied;
     public String pelaaja;
     
     public Muisti () {
-        this.tied=tied;
+        this.tied=new Tiedostonkasittley();
         pelaaja="";
     }
     
@@ -46,6 +45,8 @@ public class Muisti {
         int kohta = 0;
         if (onkoNimiKaytetty(pelaaja)==true) {
             kohta = tied.haeMuistista(pelaaja);
+        } else {
+            System.out.println("Nimelläsi ei ole tallennettu!");
         }
         return kohta;
     }

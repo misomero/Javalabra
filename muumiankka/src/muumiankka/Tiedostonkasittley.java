@@ -14,19 +14,18 @@ import java.io.*;
 
 public class Tiedostonkasittley {
     
-    public ArrayList<String> tekstit;
-    public ArrayList<String> nimet;
+    private ArrayList<String> tekstit;
+    private ArrayList<String> nimet;
     
     
     public Tiedostonkasittley() {
-        this.tekstit=tekstit;
-        this.tekstit=new ArrayList();
+        this.tekstit= new ArrayList();
         this.nimet=new ArrayList();
     }
     
     public void tekstienLuku() {
         
-        for (int i = 0; i < 3; i++) {            //i käy läpi kaikki tekstitiedostot, tiedostot nimetään esim. tiedosto35.txt, tiedostoja tulee jatkossa lisää...
+        for (int i = 0; i < 42; i++) {            //i käy läpi kaikki tekstitiedostot, tiedostot nimetään esim. tiedosto35.txt, tiedostoja tulee jatkossa lisää...
                 String tiedosto = "tiedosto"+i+".txt";
             try {
                 Scanner lukija = new Scanner(new File (tiedosto), "UTF-8");
@@ -53,33 +52,24 @@ public class Tiedostonkasittley {
             System.out.println("Virhe tallentamisessa, yritä uudelleen!");
         }
     }
-    public int haeMuistista (String pelaaja) {
+    public String haeMuistista (String pelaaja) {
         
         String tiedosto = pelaaja+".txt";
         String tilanne ="";
         try {
-            Scanner lukija = new Scanner(new File(tiedosto));
+            Scanner lukija = new Scanner(new File(tiedosto),"UTF-8");
             while (lukija.hasNextLine()) {
                 tilanne = lukija.nextLine();
             }
         } catch (Exception e) {
             System.out.println("Tiedoston luvussa oli virhe!");
         }
-        int kohta=0;
-        int kerroin=1;
-        if(tilanne.length()>1) {
-            for(int i=tilanne.length(); i>=0; i++) {
-                kohta+=kohta+((int)tilanne.charAt(i)-48)*kerroin;
-                kerroin=kerroin*10;   
-            }
-        } else {
-            kohta=(int)tilanne.charAt(0)-48;
-        }
-        return kohta;
+        
+        return tilanne;
     }
     public void lueNimet() {
         
-        String nimia = "";
+        String nimia;
         try {
             Scanner lukija = new Scanner(new File("nimet.txt"), "UTF-8");
             while (lukija.hasNextLine()) {
@@ -91,19 +81,41 @@ public class Tiedostonkasittley {
         }
     }
     public void tallennaNimet() {
-        
+        int i = 0;
         try {
-            PrintWriter kirjoittaja = new PrintWriter(new File("nimet.txt","UTF-8"));
-            int i = 0;
-            while(!nimet.isEmpty()) {
-                kirjoittaja.println(nimet.get(i));
-                nimet.remove(i);
-                i+=1;
+            PrintWriter kirjoittaja = new PrintWriter(new File("nimet.txt"));
+            while (!nimet.isEmpty()) {
+            kirjoittaja.println(nimet.get(i));
+            nimet.remove(i);
+            i+=1;
             }
             kirjoittaja.close();
         } catch (Exception e) {
-            System.out.print("Virhe tiedostoon kirjoittamisessa");
+            System.out.println("Virhe tiedostoon kirjoittamisessa!");
         }
     }
-
+    public boolean onkoNimiKaytetty(String nimi) {
+        boolean palautus = false;
+        tallennaNimet();
+        lueNimet();
+        if(nimet.contains(nimi)) {
+            palautus = true;
+        }
+        return palautus;
+    }
+    public String annaTeksti(int kohta) {
+        return tekstit.get(kohta);    
+    }
+    public void asetaNimi(String nimi) {
+        nimet.add(nimi);
+    }
+    public void poistaNimi(int n) {
+        nimet.remove(n);
+    }
+    public String annaNimi(int n) {
+        return nimet.get(n);
+    }
+    public void tyhjaennaNimet() {
+        nimet.clear();
+    }
 }

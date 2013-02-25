@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package muumiankka;
+package Sovelluslogiikka;
 
 /**
  *
@@ -41,16 +41,19 @@ public class Tiedostonkasittley {
         }
     }
     
-    public void muistiin (String pelaaja, int kohta) {
+    
+    public int muistiin (String pelaaja, int kohta) {
         
+        int n = 0;
         String tiedosto = pelaaja+".txt";
         try {
             PrintWriter kirjoittaja = new PrintWriter (new File(tiedosto));
             kirjoittaja.println(kohta);
             kirjoittaja.close();
         } catch (Exception e) {
-            System.out.println("Virhe tallentamisessa, yritä uudelleen!");
+            n=-1;
         }
+        return n;
     }
     public String haeMuistista (String pelaaja) {
         
@@ -62,13 +65,14 @@ public class Tiedostonkasittley {
                 tilanne = lukija.nextLine();
             }
         } catch (Exception e) {
-            System.out.println("Tiedoston luvussa oli virhe!");
+            tilanne= "42";
         }
         
         return tilanne;
     }
     public void lueNimet() {
         
+        nimet.clear();
         String nimia;
         try {
             Scanner lukija = new Scanner(new File("nimet.txt"), "UTF-8");
@@ -83,13 +87,13 @@ public class Tiedostonkasittley {
     public void tallennaNimet() {
         int i = 0;
         try {
-            PrintWriter kirjoittaja = new PrintWriter(new File("nimet.txt"));
-            while (!nimet.isEmpty()) {
-            kirjoittaja.println(nimet.get(i));
-            nimet.remove(i);
-            i+=1;
+            try (PrintWriter kirjoittaja = new PrintWriter(new File("nimet.txt"))) {
+                while (!nimet.isEmpty()) {
+                kirjoittaja.println(nimet.get(i));
+                nimet.remove(i);
+                i+=1;
+                }
             }
-            kirjoittaja.close();
         } catch (Exception e) {
             System.out.println("Virhe tiedostoon kirjoittamisessa!");
         }
@@ -106,11 +110,17 @@ public class Tiedostonkasittley {
     public String annaTeksti(int kohta) {
         return tekstit.get(kohta);    
     }
+    public void poistaTekstit() {
+        tekstit.clear();
+    }
     public void asetaNimi(String nimi) {
         nimet.add(nimi);
     }
     public void poistaNimi(int n) {
         nimet.remove(n);
+    }
+    public void poistaNimet() {
+        nimet.clear();
     }
     public String annaNimi(int n) {
         return nimet.get(n);

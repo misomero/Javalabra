@@ -2,8 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-import muumiankka.Muisti;
-import muumiankka.Tiedostonkasittley;
+import Sovelluslogiikka.Muisti;
+import Sovelluslogiikka.Tiedostonkasittley;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.io.*;
@@ -51,26 +51,12 @@ public class MuistiLuokanTest {
     // @Test
     // public void hello() {}
     @Test
-    public void nimenTallentaminenJaPoisto() {
+    public void nimenTallentaminenJaKayttoAste() {
         eka.asetaNimi("Miika");
         eka.asetaNimi("Marika");
         eka.asetaNimi("Aapeli");
         eka.asetaNimi("Marika");
-        assertFalse(tied.annaNimet().contains("Marika"));
-    }
-    @Test
-    public void onkoNimiVapaa () {
-        eka.asetaNimi("Kari");
-        eka.asetaNimi("Iivari");
-        boolean arvo = eka.onkoNimiKaytetty("Iivari");
-        assertTrue(arvo);
-    }
-    @Test
-    public void onkoNimiVapaa2 () {
-        eka.asetaNimi("Annika");
-        eka.asetaNimi("Pekka");
-        boolean arvo = eka.onkoNimiKaytetty("Anni");
-        assertFalse(arvo);
+        assertFalse(tied.onkoNimiKaytetty("Marika"));
     }
     @Test
     public void kohdanHakuJaTallennus () {

@@ -4,7 +4,7 @@
  */
 
 
-import muumiankka.Tiedostonkasittley;
+import Sovelluslogiikka.Tiedostonkasittley;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.io.*;
@@ -38,8 +38,8 @@ public class TiedostojenLukuTest {
     
     @After
     public void tearDown() {
-        eka.nimet.clear();
-        eka.tekstit.clear();
+        eka.tyhjaennaNimet();
+        eka.poistaTekstit();
         File tiedosto= new File("Maija.txt");
         tiedosto.delete();
         File tiedosto2 = new File("Pekka.txt");
@@ -69,8 +69,8 @@ public class TiedostojenLukuTest {
     @Test
     public void tekstinLukuJaTalletusOikein() {
         eka.tekstienLuku();
-        boolean arvo = !eka.tekstit.isEmpty();
-        assertTrue(arvo);
+        boolean arvo = eka.annaTeksti(3).equals("");
+        assertEquals(arvo,false);
     }
     @Test
     public void tilanteenTallettaminenJaHaku1 () {
@@ -98,13 +98,13 @@ public class TiedostojenLukuTest {
     }
     @Test
     public void nimienLukuJaTallennus() {
-        eka.nimet.add("Pekka");
-        eka.nimet.add("Antti");
+        eka.asetaNimi("Pekka");
+        eka.asetaNimi("Antti");
         eka.tallennaNimet();
-        eka.nimet.clear();
+        eka.poistaNimet();
         eka.lueNimet();
-        boolean arvo = !eka.nimet.isEmpty();
-        assertFalse(arvo);
+        String nimi = eka.annaNimi(0);
+        assertEquals(nimi,"Pekka");
         
     }
    

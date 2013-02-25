@@ -4,19 +4,22 @@
  */
 package muumiankka;
 
+
 /**
  *
  * @author Vierailija
  */
+import Kayttoliittyma.GraafinenOhjelma;
+import javax.swing.*;
 public class Muumiankka {
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-      Pelaaja nimi = new Pelaaja("Maija",0);  
-      nimi.tallennaKohta();
-      Kohta testi = new Kohta(0);
-      System.out.println(testi.annaTeksti(2));
+        
+       GraafinenOhjelma ohjelma = new GraafinenOhjelma();
+       SwingUtilities.invokeLater(ohjelma);
+        
     }
 }

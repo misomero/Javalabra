@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+import Sovelluslogiikka.Ohjaus;
 import muumiankka.Ohjaus;
 import org.junit.*;
 import static org.junit.Assert.*;

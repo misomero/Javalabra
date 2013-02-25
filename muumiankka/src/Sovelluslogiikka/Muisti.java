@@ -22,14 +22,6 @@ public class Muisti {
         this.tied=new Tiedostonkasittley();
     }
     
-    public void asetaNimi(String nimi) {
-        tied.asetaNimi(nimi);
-        tied.tallennaNimet();
-    }
-    public void lueNimet() {
-        tied.lueNimet();
-    }
-    
     public int tallennaMuistiin (String nimi, int kohta) {
         return tied.muistiin(nimi,kohta);
     }
@@ -45,6 +37,9 @@ public class Muisti {
             kohta=43;
         }
         return kohta;
+    }
+    public boolean onkoNimiKaytetty(String nimi) {
+        return tied.onkoNimiKaytetty(nimi);
     }
     
 }

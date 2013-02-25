@@ -22,8 +22,8 @@ public class Kuvankasittely {
         this.img=null;
     } 
     
-    public void lataaKuva() {
-            String tiedosto = "muumiankka.jpg";
+    private void lataaKuva() {
+            String tiedosto = "muumiankka1.jpg";
             try {
                 img=ImageIO.read(new File(tiedosto));
             } catch (Exception e) {
@@ -31,6 +31,7 @@ public class Kuvankasittely {
             }
     }
     public BufferedImage annaKuva() {
+        lataaKuva();
         return img;
     }
 }

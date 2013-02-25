@@ -30,7 +30,6 @@ public class Ohjaus {
         this.tiedostot=new Tiedostonkasittley();
         tiedostot.tekstienLuku();
         this.kuvankasittely= new Kuvankasittely();
-        kuvankasittely.lataaKuva();
         this.muisti=new Muisti();
         this.uusik=0;
         this.missa=0;
@@ -46,13 +45,22 @@ public class Ohjaus {
      
     public void siirtyminen() {
       
-        if (missa<=12) {
+        if (missa<5) {
+            tavallinenSiirtyminen();
+        }
+        else if(missa>5 &&missa<10) {
+            tavallinenSiirtyminen();
+        }
+        else if(missa==11||missa==12) {
             tavallinenSiirtyminen();
         }
         else if (missa==13||missa==15) {
            satunnainenSiirtyminen1();
         }
-        else if (missa>=19&&missa<=27){ 
+        else if(missa==5|| missa==10||missa==14||missa==19||missa==27||missa==35||missa==38) {
+            umpikujaanSiirtyminen();
+        }
+        else if (missa>19&&missa<27){ 
             satunnainenSiirtyminen1();
         }
         else if(missa==34 || missa==36 || missa==37 || missa==39) {
@@ -65,7 +73,10 @@ public class Ohjaus {
             satunnainenSiirtyminen3();
         }
         else if (missa>=31&&missa<=33) {
-            tavallinenSiirtyminen();
+            loppuunSiirtyminen();
+        }
+        else if(missa==34||missa==36||missa==37||missa==39) {
+            satunnainenSiirtyminen1();
         }
             
     }
@@ -76,17 +87,29 @@ public class Ohjaus {
     }    
     
     private void satunnainenSiirtyminen1() {        
-        int satunnainen1 = satunnaisluku(16,18);         
-        this.kohta = kohdat.get(satunnainen1);    }    
+        this.missa = satunnaisluku(16,18);         
+        this.kohta = kohdat.get(missa);    }    
     
     private void satunnainenSiirtyminen2() {        
-        int satunnainen2 = satunnaisluku(28,30);        
-        this.kohta = kohdat.get(satunnainen2);    }    
+        this.missa = satunnaisluku(28,30);        
+        this.kohta = kohdat.get(missa);    }    
     
     private void satunnainenSiirtyminen3() {        
-        int satunnainen3 = satunnaisluku(31,33);        
-        this.kohta = kohdat.get(satunnainen3);    }    
-    
+        this.missa = satunnaisluku(31,33);        
+        this.kohta = kohdat.get(missa);    
+    }    
+    private void loppuunSiirtyminen() {
+        this.missa=40;
+        this.kohta=kohdat.get(missa);
+    }
+    private void umpikujaanSiirtyminen() {
+        this.missa=41;
+        this.kohta=kohdat.get(missa);
+    }
+    public void siirtyminenAlkuun() {
+        this.missa=0;
+        this.kohta=kohdat.get(0);
+    }
     private int satunnaisluku(int ylaraja, int alaraja) {      
         return alaraja + (int)(Math.random() * (ylaraja - alaraja + 1));    }    
     
@@ -103,16 +126,9 @@ public class Ohjaus {
     }
     public void asetaNimi(String nimi) {
         this.nimi=nimi;
-        this.muisti.asetaNimi(nimi);
     }
     public String annaNimi() {
         return this.nimi;
-    }
-    public void tyhjennaNimet() {
-        this.tiedostot.poistaNimet();
-    }
-    public void lueNimet() {
-        muisti.lueNimet();
     }
     public void asetaKohta(int kohta) {
         this.missa=kohta;
@@ -132,6 +148,12 @@ public class Ohjaus {
     }
     public BufferedImage annaKuva() {
         return kuvankasittely.annaKuva();
+    }
+    public boolean onkoNimiKaytetty(String nimi) {
+       return muisti.onkoNimiKaytetty(nimi);
+    }
+    public void poistaTallennus(String nimi) {
+        this.tiedostot.poistaNimi(nimi);
     }
    
         

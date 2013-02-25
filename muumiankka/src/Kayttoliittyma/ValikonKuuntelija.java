@@ -29,11 +29,17 @@ public class ValikonKuuntelija implements ActionListener {
         if(valinta.equals("Lataa tallennettu peli")) {
             ohjelma.lataa();
         }
+        if(valinta.equals("Poista tallennettu peli")) {
+            ohjelma.poistaNimi();
+        }
         if(valinta.equals("Sulje")) {
             ohjelma.sulje();
         }
         if(valinta.equals("Tietoa pelistä")) {
             ohjelma.tietoa();
+        }
+        if(valinta.equals("Peliohje")) {
+            ohjelma.ohje();
         }
     }
 }

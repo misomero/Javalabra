@@ -1,17 +1,20 @@
+package muumiankka;
+
+
+import Kayttoliittyma.GraafinenOhjelma;
+import javax.swing.SwingUtilities;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package muumiankka;
-
 
 /**
  *
  * @author Vierailija
  */
-import Kayttoliittyma.GraafinenOhjelma;
-import javax.swing.*;
-public class Muumiankka {
+public class Main {
+
     /**
      * @param args the command line arguments
      */
@@ -22,4 +25,7 @@ public class Muumiankka {
        SwingUtilities.invokeLater(ohjelma);
         
     }
+
+
+    
 }

@@ -11,7 +11,6 @@ package Sovelluslogiikka;
  * @author Vierailija
  */
 //Hoitaa siirtymistä tiloista toisiin, sekä on yhteydessä Graafiseen ohjelmaan, tarjoaa sille tarvittavat metodit
-import Sovelluslogiikka.Kohta;
 import java.util.*;
 import java.awt.image.BufferedImage;
 

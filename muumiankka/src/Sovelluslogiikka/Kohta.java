@@ -6,10 +6,14 @@ package Sovelluslogiikka;
 
 
 /**
- *
+ *Tämä luokka tietää kohtaan kuuluvan tekstisisällön ja seuraajat, eli mahdolliset seuraavat kohdat
  * @author Vierailija
  */
 import java.util.ArrayList;
+/**
+ * 
+ * @author Vierailija
+ */
 public class Kohta {
     
     private ArrayList<Kohta> seuraajat;
@@ -17,6 +21,11 @@ public class Kohta {
     private Tiedostonkasittley tiedos;
     private int kohta;
     
+    /**
+     * Konstruktori luo kohdan, antaen sille parametrit
+     * @param kohta numero, joka kertoo missä verkon jäsenessä mennään
+     * @param kasittely toinen luokka, jota tavitaan kohdan luomiseen
+     */
     public Kohta(int kohta, Tiedostonkasittley kasittely) {
         this.kohta=kohta;
         this.tiedos = kasittely;
@@ -41,18 +50,37 @@ public class Kohta {
         }
         
     }
+    /**
+     * palautaa sen hetkisen kohdan tekstisisällön
+     * @return String muotoinen pelin sisältöteksti
+     */
     public String annaTeksti() {
         Kohta tassa = new Kohta(kohta,tiedos);
         return tassa.tkstsisalto;
     }
+    /**
+     * antaa kohdan mahdolliset seuraajat
+     * @param lahtokohta parametri lähtökohta kertoo mistä Kohdan numeroarvosta lähdetään
+     * @param valinta parametri kertoo minkä pelaajan valinan mukaan seuraava kohta haetaan
+     * @return palautaa logiikan antaman Kohta-olion
+     */
     public Kohta annaSeuraaja (int lahtokohta, int valinta) {
         Kohta edeltaja = new Kohta(lahtokohta, tiedos);
         return edeltaja.seuraajat.get(valinta-1);
     }
+    /**
+     * kertoo sen hetikisen Kohdan numeroarvoi
+     * @return palautaa kyseisen numeroarvon
+     */
     public int annaKohtaNro () {
         return this.kohta;
     }
 
+    /**
+     * override vastaavuudelle, määrittää sen vain numeroparametrin mukaan (joka määritellään konstruktorissa)
+     * @param obj objekti Kohat
+     * @return palautaa false jos kohdat eivät ole samat, true jos ovat
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

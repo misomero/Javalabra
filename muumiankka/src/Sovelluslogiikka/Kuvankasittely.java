@@ -5,7 +5,7 @@
 package Sovelluslogiikka;
 
 /**
- *
+ * Tämä luokka hoitaa kuvan latauksen
  * @author Vierailija
  */
 
@@ -14,10 +14,17 @@ import javax.imageio.ImageIO;
 import java.io.*;
 
 
+/**
+ * 
+ * @author Vierailija
+ */
 public class Kuvankasittely {
     
     BufferedImage img;
     
+    /**
+     * konstruktori asetaa kuvan tyhjäksi arvoksi
+     */
     public Kuvankasittely() {
         this.img=null;
     } 
@@ -30,9 +37,17 @@ public class Kuvankasittely {
                 System.out.println("Virhe tiedoston luvussa!");
             }
     }
+    /**
+     * palautaa kuvan
+     * @return kuva
+     */
     public BufferedImage annaKuva() {
         return img;
     }
+    /**
+     * käytää sisäistä metodia lataaKuva() joka lataa halutun kuvan parametiin img
+     * @return palautaa muumiankakuvan img muutujassa.
+     */
     public BufferedImage annaLadattuKuva() {
         lataaKuva();
         return img;

@@ -5,22 +5,32 @@
 package Sovelluslogiikka;
 
 /**
- *
+ * Tämä luokka hoitaa tiedostonkäsittelyn, tallentamisen ja lukemisen
  * @author Vierailija
  */
 
 import java.util.*;
 import java.io.*;
 
+/**
+ * 
+ * @author Vierailija
+ */
 public class Tiedostonkasittley {
     
     private ArrayList<String> tekstit;
     
     
+    /**
+     * Konstrukstorissa on määritelty lista tekstit jotak sisältävät pelin sisällön.
+     */
     public Tiedostonkasittley() {
         this.tekstit= new ArrayList();
     }
     
+    /**
+     * tämä metodi lukee kaikki tekstit peliävarten aluksi.
+     */
     public void tekstienLuku() {
         
         for (int i = 0; i < 42; i++) {            //i käy läpi kaikki tekstitiedostot, tiedostot nimetään esim. tiedosto35.txt, tiedostoja tulee jatkossa lisää...
@@ -40,6 +50,12 @@ public class Tiedostonkasittley {
     }
     
     
+    /**
+     * tämä metodi talletta muistiin pelaajanimen ja kohdan
+     * @param pelaaja pelaajanimi jolla tieto talletetaan
+     * @param kohta numero arvo joka kertoo missä kohdassa menään 
+     * @return palautaa 0, jos talletus onnistuu, -1 jos ei.
+     */
     public int muistiin (String pelaaja, int kohta) {
         
         int n = 0;
@@ -69,6 +85,11 @@ public class Tiedostonkasittley {
         
         return tilanne;
     }
+    /**
+     * hakee talletetun kohdan ja palauttaa sen käyttää sisäistä apumetodia
+     * @param pelaaja pelaajanimi jolla kohtaa haetaan
+     * @return palautaa pelikohdan, tai vähän sitä isomman virhetilanteissa, jolloin käyttöliittymä osaa antaa virheilmoituksen
+     */
     public int haeNimellaKohta (String pelaaja) {
         
         String kohta1;
@@ -83,6 +104,11 @@ public class Tiedostonkasittley {
         return kohta;
     }
     
+    /**
+     * Tarkistaa onko nimellä talletettu jokin kohat
+     * @param nimi pelaajanimi joka tarkastetaan
+     * @return palautaa true, jos nimellä on talllennettu, false jos ei.
+     */
     public boolean onkoNimiKaytetty(String nimi) {
         boolean palautus = false;
         String tiedosto =nimi + ".txt";
@@ -100,9 +126,17 @@ public class Tiedostonkasittley {
         }
         return palautus;
     }
+    /**
+     * antaa tietyn kohdan tekstin
+     * @param kohta Kohdan numero arvo
+     * @return palautaa String muotoisen
+     */
     public String annaTeksti(int kohta) {
         return tekstit.get(kohta);    
     }
+    /**
+     *poistaa tekstit arraylistita 
+     */
     public void poistaTekstit() {
         tekstit.clear();
     }

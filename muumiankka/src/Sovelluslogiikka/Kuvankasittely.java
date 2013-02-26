@@ -31,6 +31,9 @@ public class Kuvankasittely {
             }
     }
     public BufferedImage annaKuva() {
+        return img;
+    }
+    public BufferedImage annaLadattuKuva() {
         lataaKuva();
         return img;
     }

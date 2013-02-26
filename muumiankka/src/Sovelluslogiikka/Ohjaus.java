@@ -10,11 +10,15 @@ package Sovelluslogiikka;
  *
  * @author Vierailija
  */
-//Hoitaa siirtymistä tiloista toisiin, näillä
+//Hoitaa siirtymistä tiloista toisiin, sekä on yhteydessä Graafiseen ohjelmaan, tarjoaa sille tarvittavat metodit
 import Sovelluslogiikka.Kohta;
 import java.util.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * 
+ * @author Vierailija
+ */
 public class Ohjaus {
     
     private Tiedostonkasittley tiedostot;
@@ -25,6 +29,9 @@ public class Ohjaus {
     private int uusik;
     private String nimi;
     
+    /**
+     * Ohajuksen konstruktori luo sisäiset muutujat joista tärkein on kohta, joka kertoo pelissä tarvittavat tekstit ja kohtatunnisteet.
+     */
     public Ohjaus () {
         this.tiedostot=new Tiedostonkasittley();
         tiedostot.tekstienLuku();
@@ -41,6 +48,9 @@ public class Ohjaus {
     }
     
      
+    /**
+     * Tämä metodi hoitaa siirtymistä kohdasta toiseen (kohtien sisältö on edelleen pelin teksti). Erilasilla kohdilla on määritelty erilaisia siirtymisiä
+     */
     public void siirtyminen() {
       
         if (missa<5) {
@@ -104,11 +114,19 @@ public class Ohjaus {
         this.missa=41;
         this.kohta=kohdat.get(missa);
     }
+    /**
+     * tämä metodi nollaa pelitilanteen ja vie kohdan alkuun
+     */
     public void siirtyminenAlkuun() {
         this.uusik=0;
         this.missa=0;
         this.kohta=kohdat.get(0);
     }
+    /**
+     * 
+     * @param nimi tällä pelaajanimellä voi hakea tietyn kohdan muistista
+     * @return palautaa tallennetun kohtanumeron ja siirtää kohdan osoittamaan sitä
+     */
     public int siirtyminenTiettyynKohtaan(String nimi) { 
         this.missa =tiedostot.haeNimellaKohta(nimi);
         if(missa <42) {
@@ -117,34 +135,75 @@ public class Ohjaus {
         return missa;
     }
     
+    /**
+     * metodi tallentaa pelaajanimeä vastaavan pelikohdan
+     * @return palautaa 0 jos muistiin tallnetaminen onnisuu, -1 jos ei
+     */
     public int tallenna() {
         return this.tiedostot.muistiin(nimi, missa);
     }
+    /**
+     * asettaa pelaajanimen, jolla voi tallentaa kohdan
+     * @param nimi syöteenä pelaajalta saatu nimi
+     */
     public void asetaNimi(String nimi) {
         this.nimi=nimi;
     }
+    /**
+     * metodi palautaa pelaajanimen
+     * @return pelaajanimi
+     */
     public String annaNimi() {
         return this.nimi;
     }
+    /**
+     * asettaa numeroarvoisen kohdan, jonka perusteella voidaan tehdä siirtymisiä
+     * @param kohta kohta josta halutaan siirtyä
+     */
     public void asetaKohta(int kohta) {
         this.missa=kohta;
     }
+    /**
+     * antaa sen hetikisen kohtanumeron
+     * @return
+     */
     public int annaKohtaNumero() {
         return this.missa;
     }
+    /**
+     * antaa viimeisimmän valitun siirron
+     * @return
+     */
     public int annaSiirto() {
         return this.uusik;
     }
     
+    /**
+     * asetaaa vimeisimmän valitun siirron
+     * @param valinta
+     */
     public void asetaSiirto(int valinta) {
         this.uusik=valinta;
     }
+    /**
+     * palautaa Kohta muotoisen olion, joka on sen hetkinen kohta, sisältää pelin tekstit
+     * @return
+     */
     public Kohta annaKohta() {
         return kohta;
     }
+    /**
+     * palautaa peliin kuuluvan kuvan
+     * @return muumiankkakuva sisältönä
+     */
     public BufferedImage annaKuva() {
-        return kuvankasittely.annaKuva();
+        return kuvankasittely.annaLadattuKuva();
     }
+    /**
+     * tutkii onko nimellä tallennettu
+     * @param nimi pelaajanimi jota etsitään
+     * @return jos nimellä on tallennettu, palauttaa true, jos ei false
+     */
     public boolean onkoNimiKaytetty(String nimi) {
        return this.tiedostot.onkoNimiKaytetty(nimi);
     }

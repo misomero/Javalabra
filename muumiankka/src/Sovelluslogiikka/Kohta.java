@@ -49,6 +49,9 @@ public class Kohta {
         Kohta edeltaja = new Kohta(lahtokohta, tiedos);
         return edeltaja.seuraajat.get(valinta-1);
     }
+    public int annaKohtaNro () {
+        return this.kohta;
+    }
 
     @Override
     public boolean equals(Object obj) {

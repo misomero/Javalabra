@@ -1,7 +1,6 @@
-﻿ALKU:
-Sateisena ja koleana marraskuun iltana saapui Rautatieasemalle juna.
-Siitä nousi pieni ja pyylevä hahmo: Muumiankka. 
-Silla oli kädessään pilkullinen sateenvarjo. Pilkullinen koska se 
-piti pilkullisita asioista. Nuoruusvuosinaan se oli toivonut 
-olevansa Leopardi. Voimakas ja nopea, seka ehdottomasti vaarallinen. 
-Mutta siita tulikin vain tavallinen ancusmuumicus...
+﻿ALKU
+
+Sateisena ja koleana marraskuun iltana saapui Helsingin Rautatieasemalle juna. Siitä nousi pieni ja pyylevä hahmo: Muumiankka. Hänellä oli kädessään pilkullinen sateenvarjo. Pilkullinen koska hän piti pilkullisista asioista. Nuoruusvuosinaan hän oli toivonut olevansa Leopardi. Voimakas ja nopea sekä ehdottomasti vaarallinen. Mutta hänestä tulikin vain tavallinen ancusmuumicus. Näin iltasella häntä hieman hiukoi ja väsytti, mutta ehkä hän vielä jotain sinä päivänä tekisi...
+
+Haluatko, että Muumiankka menee seuraavaksi: 
+1. Kahvilaan, 2. Hotelliin, 3. Juhliin.

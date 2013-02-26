@@ -17,7 +17,6 @@ import java.awt.image.BufferedImage;
 
 public class Ohjaus {
     
-    private Muisti muisti;
     private Tiedostonkasittley tiedostot;
     private Kuvankasittely kuvankasittely;
     private Kohta kohta;
@@ -30,7 +29,6 @@ public class Ohjaus {
         this.tiedostot=new Tiedostonkasittley();
         tiedostot.tekstienLuku();
         this.kuvankasittely= new Kuvankasittely();
-        this.muisti=new Muisti();
         this.uusik=0;
         this.missa=0;
         this.nimi="";
@@ -48,35 +46,35 @@ public class Ohjaus {
         if (missa<5) {
             tavallinenSiirtyminen();
         }
-        else if(missa>5 &&missa<10) {
+        else if(missa>5 &&missa<9) {
             tavallinenSiirtyminen();
         }
         else if(missa==11||missa==12) {
             tavallinenSiirtyminen();
         }
         else if (missa==13||missa==15) {
-           satunnainenSiirtyminen1();
+           siirtyminen1();
         }
-        else if(missa==5|| missa==10||missa==14||missa==19||missa==27||missa==35||missa==38) {
+        else if(missa==5|| missa==9||missa==10||missa==14||missa==19||missa==27||missa==35||missa==38) {
             umpikujaanSiirtyminen();
         }
         else if (missa>19&&missa<27){ 
-            satunnainenSiirtyminen1();
+            siirtyminen1();
         }
         else if(missa==34 || missa==36 || missa==37 || missa==39) {
-            satunnainenSiirtyminen1();
+            siirtyminen1();
         }
         else if (missa==16||missa==17||missa<=18) {
-            satunnainenSiirtyminen2();
+            siirtyminen2();
         }
         else if (missa==28||missa==29||missa==30) {
-            satunnainenSiirtyminen3();
+            siirtyminen3();
         }
         else if (missa>=31&&missa<=33) {
             loppuunSiirtyminen();
         }
         else if(missa==34||missa==36||missa==37||missa==39) {
-            satunnainenSiirtyminen1();
+            siirtyminen1();
         }
             
     }
@@ -86,16 +84,16 @@ public class Ohjaus {
         this.missa = 3*missa+uusik;
     }    
     
-    private void satunnainenSiirtyminen1() {        
-        this.missa = satunnaisluku(16,18);         
+    private void siirtyminen1() {        
+        this.missa = 5*3+uusik;
         this.kohta = kohdat.get(missa);    }    
     
-    private void satunnainenSiirtyminen2() {        
-        this.missa = satunnaisluku(28,30);        
+    private void siirtyminen2() {        
+        this.missa = 9*3+uusik;        
         this.kohta = kohdat.get(missa);    }    
     
-    private void satunnainenSiirtyminen3() {        
-        this.missa = satunnaisluku(31,33);        
+    private void siirtyminen3() {        
+        this.missa = 10*3+uusik;        
         this.kohta = kohdat.get(missa);    
     }    
     private void loppuunSiirtyminen() {
@@ -107,14 +105,12 @@ public class Ohjaus {
         this.kohta=kohdat.get(missa);
     }
     public void siirtyminenAlkuun() {
+        this.uusik=0;
         this.missa=0;
         this.kohta=kohdat.get(0);
     }
-    private int satunnaisluku(int ylaraja, int alaraja) {      
-        return alaraja + (int)(Math.random() * (ylaraja - alaraja + 1));    }    
-    
     public int siirtyminenTiettyynKohtaan(String nimi) { 
-        this.missa =muisti.haeNimellaKohta(nimi);
+        this.missa =tiedostot.haeNimellaKohta(nimi);
         if(missa <42) {
             this.kohta=kohdat.get(missa);
         }
@@ -122,7 +118,7 @@ public class Ohjaus {
     }
     
     public int tallenna() {
-        return muisti.tallennaMuistiin(nimi, missa);
+        return this.tiedostot.muistiin(nimi, missa);
     }
     public void asetaNimi(String nimi) {
         this.nimi=nimi;
@@ -150,11 +146,9 @@ public class Ohjaus {
         return kuvankasittely.annaKuva();
     }
     public boolean onkoNimiKaytetty(String nimi) {
-       return muisti.onkoNimiKaytetty(nimi);
+       return this.tiedostot.onkoNimiKaytetty(nimi);
     }
-    public void poistaTallennus(String nimi) {
-        this.tiedostot.poistaNimi(nimi);
-    }
+   
    
         
 }

@@ -62,6 +62,16 @@ public class KohtaTest {
         Kohta seuraaja3 = testi.annaSeuraaja(3,3);
         assertEquals(seuraaja3,new Kohta(3*3+3,tiedostot));
     }
+    @Test
+    public void TekstiEiOleTyhja () {
+        boolean arvo = testi.annaTeksti().equals("");
+        assertEquals(arvo,false);
+    }
+    @Test
+    public void AntaaKohdanNronOikein() {
+        int kohta = testi.annaKohtaNro();
+        assertEquals(kohta,0);
+    }
     
 
 }

@@ -54,7 +54,7 @@ public class Tiedostonkasittley {
         return n;
         
     }
-    public String haeMuistista (String pelaaja) {
+    private String haeMuistista (String pelaaja) {
         
         String tiedosto = pelaaja+".txt";
         String tilanne ="";
@@ -68,6 +68,19 @@ public class Tiedostonkasittley {
         }
         
         return tilanne;
+    }
+    public int haeNimellaKohta (String pelaaja) {
+        
+        String kohta1;
+        int kohta;
+        if (onkoNimiKaytetty(pelaaja)==true) {
+            kohta1 = haeMuistista(pelaaja);
+            kohta = Integer.parseInt(kohta1);
+        } 
+        else {
+            kohta=43;
+        }
+        return kohta;
     }
     
     public boolean onkoNimiKaytetty(String nimi) {
@@ -92,10 +105,5 @@ public class Tiedostonkasittley {
     }
     public void poistaTekstit() {
         tekstit.clear();
-    }
-    public void poistaNimi(String nimi) {
-        String nimi2 = nimi + ".txt";
-        File tiedosto = new File(nimi2);
-        tiedosto.delete();
     }
 }

@@ -19,6 +19,7 @@ public class NappulanKuuntelija implements ActionListener {
         this.ohjelma=ohjelma;
     }
     
+    @Override
     public void actionPerformed (ActionEvent e) {
         
         JButton nappula = ((JButton)e.getSource());

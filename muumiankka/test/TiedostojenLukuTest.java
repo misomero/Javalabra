@@ -38,7 +38,6 @@ public class TiedostojenLukuTest {
     
     @After
     public void tearDown() {
-        eka.tyhjaennaNimet();
         eka.poistaTekstit();
         File tiedosto= new File("Maija.txt");
         tiedosto.delete();
@@ -56,16 +55,20 @@ public class TiedostojenLukuTest {
     //
     // @Test
     // public void hello() {}
-//    @Test
-//    public void tiedostonLukuOikein1() {
-//        eka.tekstienLuku();
-//        
-//        assertEquals("\nALKU:\nSateisena ja koleana marraskuun\niltana saapui Rautatieasemalle\njuna. Siita nousi pieni ja pyyleva\nhahmo: Muumiankka.\nSilla oli kadessaan pilkullinen\nsateenvarjo. Pilkullinen koska\nse piti pilkullisita asioista.\nNuoruusvuosinaan se oli toivonut\nolevansa Leopardi. Voimakas ja\nnopea, seka ehdottomasti vaarallinen.\nMutta siita tulikin vain\ntavallinen ancusmuumicus.",eka.tekstit.get(0));
-//    }
-//    
+
     
-    
-    
+
+    @Test
+    public void onkoNimiKaytetty() {
+        boolean arvo = eka.onkoNimiKaytetty("Ilmari");
+        assertFalse(arvo);
+    }
+    @Test 
+    public void onkoNimiKaytetty2() {
+        eka.muistiin("Iina", 7);
+        boolean arvo = eka.onkoNimiKaytetty("Iina");
+        assertTrue(arvo);
+    }
     @Test
     public void tekstinLukuJaTalletusOikein() {
         eka.tekstienLuku();
@@ -74,38 +77,28 @@ public class TiedostojenLukuTest {
     }
     @Test
     public void tilanteenTallettaminenJaHaku1 () {
-        String tilanne;
+        int tilanne;
         eka.muistiin("Maija",6);
         eka.muistiin("Pekka",25);
-        tilanne = eka.haeMuistista("Maija");
+        tilanne = eka.haeNimellaKohta("Maija");
         assertEquals(tilanne, "6");
     }
     @Test
     public void tilanteenTallettaminenJaHaku2 () {
-        String tilanne;
+        int tilanne;
         eka.muistiin("Matti", 3);
         eka.muistiin("Aapo",17);
-        tilanne = eka.haeMuistista("Aapo");
-        assertEquals(tilanne, "17");
+        tilanne = eka.haeNimellaKohta("Aapo");
+        assertEquals(tilanne, 17);
     }
     @Test
     public void tilanteenTallettaminenJaHaku3 () {
-        String tilanne;
+        int tilanne;
         eka.muistiin("Kalle", 10);
         eka.muistiin("Kalle", 32);
-        tilanne = eka.haeMuistista("Kalle");
-        assertEquals(tilanne, "32");
+        tilanne = eka.haeNimellaKohta("Kalle");
+        assertEquals(tilanne, 32);
     }
-    @Test
-    public void nimienLukuJaTallennus() {
-        eka.asetaNimi("Pekka");
-        eka.asetaNimi("Antti");
-        eka.tallennaNimet();
-        eka.poistaNimet();
-        eka.lueNimet();
-        String nimi = eka.annaNimi(0);
-        assertEquals(nimi,"Pekka");
-        
-    }
+    
    
 }

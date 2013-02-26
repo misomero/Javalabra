@@ -23,14 +23,15 @@ public class GraafinenOhjelma implements Runnable{
     private Ohjaus ohjaus = new Ohjaus();
     private int kohta;
     
+    @Override
     public void run() {
         ikkuna = new JFrame("Muumiankan seikkailu");
-        ikkuna.setPreferredSize(new Dimension (700,450));
+        ikkuna.setPreferredSize(new Dimension (800,600));
 //        ikkuna.setIconImage(ohjaus.annaKuva());
    
         luovalikot();
         luoKomponentit();
-        this.kohta=0;
+        this.kohta=-1;
         ikkuna.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ikkuna.pack();
         ikkuna.setVisible(true);
@@ -58,10 +59,6 @@ public class GraafinenOhjelma implements Runnable{
         valikkoLataa.addActionListener(new ValikonKuuntelija(this));
         valikkoPeli.add(valikkoLataa);
         
-        JMenuItem valikkoPoista = new JMenuItem("Poista tallennettu peli");
-        valikkoPoista.addActionListener(new ValikonKuuntelija(this));
-        valikkoPeli.add(valikkoPoista);
-        
         JMenuItem valikkoSulje = new JMenuItem("Sulje");
         valikkoSulje.addActionListener(new ValikonKuuntelija(this));
         valikkoPeli.add(valikkoSulje);
@@ -87,19 +84,18 @@ public class GraafinenOhjelma implements Runnable{
         tekstikentta= new JTextArea();
         tekstikentta.setBackground(Color.darkGray);
         tekstikentta.setForeground(Color.WHITE);
-        tekstikentta.setFont(new Font("Serif", Font.ROMAN_BASELINE, 18));
+        tekstikentta.setFont(new Font("Serif", Font.ROMAN_BASELINE, 12));
         tekstikentta.setAlignmentX(Component.CENTER_ALIGNMENT);
         tekstikentta.setAlignmentY(Component.CENTER_ALIGNMENT);
+        tekstikentta.setEditable(false);
+        tekstikentta.setLineWrap(true);
+        tekstikentta.setWrapStyleWord(true);
         pohja.add(tekstikentta);
         
         kentta = new JLabel();
-        kentta.setMaximumSize(new Dimension(150,100));
-        kentta.setBackground(Color.LIGHT_GRAY);  
-        kentta.setForeground(Color.BLACK);
-        kentta.setFont(new Font ("Serif", Font.ROMAN_BASELINE, 19));
-        
         kuva = new ImageIcon(ohjaus.annaKuva());
         kentta.setIcon(kuva);
+        kentta.setAlignmentX(Component.LEFT_ALIGNMENT);
         pohja.add(kentta);
         
         nappulat = new Container();
@@ -126,16 +122,21 @@ public class GraafinenOhjelma implements Runnable{
     }
         
     public void uusi() {
+        kohta=0;
         String nimi = JOptionPane.showInputDialog("Anna nimesi! ");
         if(ohjaus.onkoNimiKaytetty(nimi)==true) {
             JOptionPane.showMessageDialog(ikkuna, "Nimelläsi on pelattu, voit ladata aijemman\npelitilanteen valikosta 'Lataa tallennettu peli'.\nJos haluat aloittaa uuden pelin, jatka tästä.\nJos tallennat tällä nimellä, "
                     + "\nhävität aijemman pelitilanteen!");
         }
+        if(nimi==null) {
+            kohta=-1;
+        }
+        else {
         JOptionPane.showMessageDialog(ikkuna, "Tervetuloa pelaamaan, " +nimi);
         ohjaus.asetaNimi(nimi);
         ohjaus.asetaKohta(0);
         aloita();
-        
+        }
     }
     public void tallenna() {
        int arvo= ohjaus.tallenna();
@@ -160,11 +161,7 @@ public class GraafinenOhjelma implements Runnable{
             tekstikentta.setText(ohjaus.annaKohta().annaTeksti());
         }
     }
-    public void poistaNimi() {
-        String nimi = JOptionPane.showInputDialog(ikkuna, "Anna poistettavan pelin pelaajanimi: ");
-        ohjaus.poistaTallennus(nimi);
-        JOptionPane.showMessageDialog(ikkuna, "Peli on poistettu");
-    }
+    
     public void sulje() {
         ohjaus.asetaKohta(0);
         ohjaus.asetaNimi("");
@@ -172,52 +169,69 @@ public class GraafinenOhjelma implements Runnable{
     }
     
     public void tietoa() {
-        JOptionPane.showMessageDialog(ikkuna, "Mikä tämä on? \nTämä on tekstuaalinen seikkalupeli,\njossa voit valita aina kolmesta\ntekemisvaihtoehdosta, jotka kaikki\njohtavat eri lopputulemiin.\nAloita klikkaamalla Uusi peli\nja antamalla oma nimesi.\nSeuraavaan vaiheeseen seikkailua\npääset klikkaamalla nappuloita\nvalintasi mukaan.\nKatso pääsetkö perille,\nvai juututko matkan varrelle!");
+        JOptionPane.showMessageDialog(ikkuna, "Mikä tämä on? \nOlet käynnistänyt tekstuaalisen seikkalupelin,\njossa voit valita aina kolmesta\ntekemisvaihtoehdosta.\nSeuraavaan vaiheeseen seikkailua\npääset klikkaamalla nappuloita\nvalintasi mukaan.\nKatso pääsetkö perille,\nvai juututko matkan varrelle!");
     }
     public void ohje() {
         JOptionPane.showMessageDialog(ikkuna, "Uuden pelin saat valikosta \nvalitsemalla 'Uusi peli'. \nVoit tallentaa sen hetkisen \npelitilanteesi valitsemalla 'Tallenna'.\nTallennetun pelin voit ladata \n'Lataa tallennettu peli'\nkohdasta pelaajanimelläsi.");
     }
     
     public void siirry1() {
+        if(kohta>=0) {
         if(kohta<=41) {
         ohjaus.asetaSiirto(1);
         ohjaus.siirtyminen();
         tekstikentta.setText(ohjaus.annaKohta().annaTeksti());
-        kohta = ohjaus.annaKohtaNumero();
+            if(ohjaus.annaKohtaNumero()<40) {
+                kohta = ohjaus.annaKohtaNumero();
+            } else {
+                kohta = ohjaus.annaKohtaNumero()+2;
+            }
         }
         else {
-            tekstikentta.setFont(new Font("Serif", Font.BOLD, 24));
-            tekstikentta.setText("LOPPU");
+            JOptionPane.showMessageDialog(ikkuna,"Peli loppui,\nvoit pelata uuden\nja katsoa onko se erilainen!");
+        }
         }
     }
     public void siirry2(){
+        if(kohta>=0) {
         if(kohta<=41) {
         ohjaus.asetaSiirto(2);
         ohjaus.siirtyminen();
         tekstikentta.setText(ohjaus.annaKohta().annaTeksti());
-        kohta=ohjaus.annaKohtaNumero();
+            if(ohjaus.annaKohtaNumero()<40) {
+                kohta = ohjaus.annaKohtaNumero();
+            } else {
+                kohta = ohjaus.annaKohtaNumero()+2;
+            }
         }
         else {
-            tekstikentta.setFont(new Font("Serif", Font.BOLD, 24));
-            tekstikentta.setText("LOPPU");
+            JOptionPane.showMessageDialog(ikkuna, "Peli loppui,\nvoit pelata uuden\nja katsoa onko se erilainen!");
         }
+        }
+        
     }
     public void siirry3() {
+        if(kohta>=0) {
         if(kohta<=41) {
         ohjaus.asetaSiirto(3);
         ohjaus.siirtyminen();
         tekstikentta.setText(ohjaus.annaKohta().annaTeksti());
-        kohta=ohjaus.annaKohtaNumero();
+            if(ohjaus.annaKohtaNumero()<40) {
+                kohta = ohjaus.annaKohtaNumero();
+            } else {
+                kohta = ohjaus.annaKohtaNumero()+2;
+            }
         }
         else {
-            tekstikentta.setFont(new Font("Serif", Font.BOLD, 24));
-            tekstikentta.setText("LOPPU");
+            JOptionPane.showMessageDialog(ikkuna, "Peli loppui,\nvoit pelata uuden\nja katsoa onko se erilainen!");
+        }
         }
     }
     
     public void aloita() {
+        kohta=0;
         if(ohjaus.annaKohta().annaTeksti()==null){
-            JOptionPane.showMessageDialog(ikkuna, "Ethän poistanut tekstitiedostoja pelistä!");
+            JOptionPane.showMessageDialog(ikkuna, "Ethän poistanut tekstitiedostoja pelikansiosta!");
             tekstikentta.setText("Virhetilanne!!");
         } else {
             ohjaus.siirtyminenAlkuun();

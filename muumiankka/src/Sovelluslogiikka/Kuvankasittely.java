@@ -23,7 +23,7 @@ public class Kuvankasittely {
     } 
     
     private void lataaKuva() {
-            String tiedosto = "muumiankka1.jpg";
+            String tiedosto = "muumiankka.jpg";
             try {
                 img=ImageIO.read(new File(tiedosto));
             } catch (Exception e) {
